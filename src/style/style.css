@@ -1,0 +1,162 @@
+@import url('https://fonts.cdnfonts.com/css/harry-potter');
+
+@import url('https://fonts.cdnfonts.com/css/magic-school-one');
+
+* {
+	margin: initial;
+	padding: initial;
+}
+
+body {
+	background: rgb(12, 12, 27);
+	color: #fff;
+	font-family: 'Harry Potter', sans-serif;
+}
+
+.App {
+	width: 100%;
+	min-height: 100vh;
+	position: relative;
+}
+
+video {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	opacity: 0.7;
+	object-fit: cover;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	overflow: hidden;
+	z-index: 1;
+	padding-bottom: 60px;
+}
+
+.sub--container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	height: inherit;
+	width: 100%;
+	padding: 30px;
+}
+
+.wrapper {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 25vh;
+	padding: 20px;
+	border-right: none;
+	border-bottom: 2px solid #ffffff78;
+	backdrop-filter: blur(7.5px);
+}
+
+.wrapper:nth-child(4) {
+	border-bottom: none;
+}
+
+.house {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	transform: skewX(5deg);
+}
+
+.house--icon {
+	width: 80px;
+}
+
+.house--name {
+	font-size: 38px;
+	font-weight: 500;
+}
+
+.house--percent {
+	font-size: 36px;
+	font-weight: 400;
+	font-family: 'Magic School Two', sans-serif;
+}
+
+footer {
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+}
+
+.footer--wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+	gap: 10px;
+	padding: 0 20px;
+}
+
+.error {
+	display: flex;
+	order: 1;
+	backdrop-filter: blur(5px);
+	font-family: 'Courier New', Courier, monospace, sans-serif;
+}
+
+.made--with--love {
+	letter-spacing: 2px;
+}
+
+@media screen and (min-width: 1000px) {
+	.App {
+		height: 100vh;
+	}
+
+	.container {
+		padding-bottom: 0;
+	}
+
+	.sub--container {
+		flex-direction: row;
+		padding: 75px;
+	}
+
+	.wrapper {
+		width: 33.33%;
+		height: 60%;
+		border-bottom: none;
+		border-right: 3px solid #fff;
+		transform: skew(-5deg, 0deg);
+	}
+
+	.wrapper:nth-child(4) {
+		border-right: none;
+	}
+
+	.house--icon {
+		width: 120px;
+	}
+
+	footer {
+		flex-direction: row;
+	}
+
+	.footer--wrapper {
+		flex-direction: row;
+		gap: 0px;
+	}
+
+	.error {
+		display: initial;
+		order: initial;
+	}
+}

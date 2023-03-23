@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import video from './assets/background-video.mp4';
+import HouseResult from './components/HouseResult';
+import MadeWithLove from './components/MadeWithLove';
+import Error from './components/Error';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface DataType {
+	name: string;
+	percent: number;
 }
+
+export interface ErrorProps {
+	errorText: string;
+}
+
+export const App: FC = () => {
+	const [data, setData] = useState<DataType[] | null>();
+	const [errorText, setErrorText] = useState<string>('no error 🦄');
+	const [loading, setLoading] = useState<boolean>(false);
+
+	const dataUrl =
+		'http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=990080&format=json';
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setLoading(true);
+			await axios
+				.get(`${dataUrl}`)
+				.then((response) => {
+					setData(response.data.achievementpercentages.achievements);
+					setLoading(false);
+				})
+				.catch((error) => {
+					setErrorText(error.status);
+				});
+		};
+		fetchData();
+	}, []);
+
+	return (
+		<div className='App'>
+			<video
+				autoPlay
+				muted
+				loop
+				src={video}></video>
+			{data ? <HouseResult data={data} /> : null}
+			<footer>
+				<div className='footer--wrapper'>
+					<Error errorText={errorText} />
+					<MadeWithLove />
+				</div>
+			</footer>
+		</div>
+	);
+};
 
 export default App;
