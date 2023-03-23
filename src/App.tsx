@@ -21,7 +21,7 @@ export const App: FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 
 	const dataUrl =
-		'http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=990080&format=json';
+		'https://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=990080&format=json';
 
 	useEffect(() => {
 		const fetchData = async () => {
