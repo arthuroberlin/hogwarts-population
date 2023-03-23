@@ -27,7 +27,13 @@ export const App: FC = () => {
 		const fetchData = async () => {
 			setLoading(true);
 			await axios
-				.get(`${dataUrl}`)
+				.get(`${dataUrl}`, {
+					headers: {
+						'Access-Control-Allow-Origin': '*',
+						'Access-Control-Allow-Headers': '*',
+					},
+					withCredentials: true,
+				})
 				.then((response) => {
 					setData(response.data.achievementpercentages.achievements);
 					setLoading(false);
@@ -46,7 +52,11 @@ export const App: FC = () => {
 				muted
 				loop
 				src={video}></video>
-			{data ? <HouseResult data={data} /> : null}
+			{data && loading === false ? (
+				<HouseResult data={data} />
+			) : (
+				<h1 className='loading'>loading🧙</h1>
+			)}
 			<footer>
 				<div className='footer--wrapper'>
 					<Error errorText={errorText} />

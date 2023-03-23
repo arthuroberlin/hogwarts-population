@@ -25,6 +25,7 @@ const House: FC<CardsProps> = ({ houseName, iconHouse, achievementPercentage }) 
 				<div className='house--icon__wrapper'>
 					<img
 						className='house--icon'
+						alt={houseName}
 						src={iconHouse}
 					/>
 				</div>
